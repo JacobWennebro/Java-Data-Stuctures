@@ -7,7 +7,7 @@
  */
 public class LinkedList {
     Node first;
-    int size = 0;
+    private int size = 0;
 
     /**
      * Constructor to create an empty list.
@@ -22,8 +22,16 @@ public class LinkedList {
      * @param newNode
      */
     public void addLast(Node newNode) {
-        size += 1;
-
+        if(first == null) {
+            first = newNode;
+        } else {
+            Node n = first;
+            while(n.next != null) {
+                n = n.next;
+            }
+            n.next = newNode;
+        }
+        size++;
     }
 
     /**
@@ -31,10 +39,11 @@ public class LinkedList {
      * (bad practice, should throw an Exception)
      * @return
      */
-    public Node removeFirst() {
-        Node temp = first;
-        first = first.getNext();
-        return temp;
+    public String removeFirst() {
+        Node n = first;
+        first = first.next;
+        size--;
+        return n.data;
     }
 
     /**
